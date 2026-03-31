@@ -1,0 +1,9 @@
+{
+  "event-type": "{{random_choice:create,update,delete,read}}",
+  "source": "{{random_choice:web-app,mobile-app,api-gateway,batch-processor}}",
+  "version": "1.0",
+  "correlation-id": "{{random_uuid}}",
+  "trace-id": "{{random_uuid}}",
+  "timestamp": "{{timestamp_ms}}",
+  "region": "{{random_choice:us-west-2,us-east-1,eu-central-1,ap-south-1}}"
+}

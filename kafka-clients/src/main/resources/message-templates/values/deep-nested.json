@@ -1,0 +1,130 @@
+{
+  "orgId": "ORG-{{counter}}",
+  "snapshot": "{{timestamp_ms}}",
+  "department": {
+    "name": "{{random_choice:Engineering,Product,Marketing,Sales,Operations}}",
+    "code": "DEPT-{{random_number:100:999}}",
+    "headCount": "{{random_number:50:500}}",
+    "budget": "{{random_decimal:100000:999999}}",
+    "divisions": [
+      {
+        "name": "{{random_choice:Platform,Infrastructure,Data,Frontend,Backend,Mobile,Security,DevOps}}",
+        "code": "DIV-{{random_number:10:99}}",
+        "headCount": "{{random_number:10:100}}",
+        "teams": [
+          {
+            "name": "{{random_choice:Core,Edge,API,Storage,Compute,Network,Auth,Observability}}",
+            "code": "TEAM-{{random_number:1:50}}",
+            "headCount": "{{random_number:5:30}}",
+            "lead": "{{random_first_name}} {{random_last_name}}",
+            "projects": [
+              {
+                "name": "Project-{{random_number:1:999}}",
+                "status": "{{random_choice:active,completed,planned,on_hold}}",
+                "priority": "{{random_choice:P0,P1,P2,P3}}",
+                "startDate": "{{timestamp_ms}}",
+                "members": [
+                  {
+                    "name": "{{random_first_name}} {{random_last_name}}",
+                    "role": "{{random_choice:engineer,senior_engineer,staff_engineer,tech_lead,manager}}",
+                    "allocation": "{{random_decimal:0.1:1.0}}",
+                    "skills": ["{{random_choice:java,go,python,rust,typescript}}", "{{random_choice:kafka,kubernetes,aws,terraform,docker}}"]
+                  },
+                  {
+                    "name": "{{random_first_name}} {{random_last_name}}",
+                    "role": "{{random_choice:engineer,senior_engineer,staff_engineer,tech_lead,manager}}",
+                    "allocation": "{{random_decimal:0.1:1.0}}",
+                    "skills": ["{{random_choice:java,go,python,rust,typescript}}", "{{random_choice:kafka,kubernetes,aws,terraform,docker}}"]
+                  },
+                  {
+                    "name": "{{random_first_name}} {{random_last_name}}",
+                    "role": "{{random_choice:engineer,senior_engineer,staff_engineer,tech_lead,manager}}",
+                    "allocation": "{{random_decimal:0.1:1.0}}",
+                    "skills": ["{{random_choice:java,go,python,rust,typescript}}", "{{random_choice:kafka,kubernetes,aws,terraform,docker}}"]
+                  }
+                ]
+              },
+              {
+                "name": "Project-{{random_number:1:999}}",
+                "status": "{{random_choice:active,completed,planned,on_hold}}",
+                "priority": "{{random_choice:P0,P1,P2,P3}}",
+                "startDate": "{{timestamp_ms}}",
+                "members": [
+                  {
+                    "name": "{{random_first_name}} {{random_last_name}}",
+                    "role": "{{random_choice:engineer,senior_engineer,staff_engineer,tech_lead,manager}}",
+                    "allocation": "{{random_decimal:0.1:1.0}}",
+                    "skills": ["{{random_choice:java,go,python,rust,typescript}}", "{{random_choice:kafka,kubernetes,aws,terraform,docker}}"]
+                  },
+                  {
+                    "name": "{{random_first_name}} {{random_last_name}}",
+                    "role": "{{random_choice:engineer,senior_engineer,staff_engineer,tech_lead,manager}}",
+                    "allocation": "{{random_decimal:0.1:1.0}}",
+                    "skills": ["{{random_choice:java,go,python,rust,typescript}}", "{{random_choice:kafka,kubernetes,aws,terraform,docker}}"]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "{{random_choice:Core,Edge,API,Storage,Compute,Network,Auth,Observability}}",
+            "code": "TEAM-{{random_number:1:50}}",
+            "headCount": "{{random_number:5:30}}",
+            "lead": "{{random_first_name}} {{random_last_name}}",
+            "projects": [
+              {
+                "name": "Project-{{random_number:1:999}}",
+                "status": "{{random_choice:active,completed,planned,on_hold}}",
+                "priority": "{{random_choice:P0,P1,P2,P3}}",
+                "startDate": "{{timestamp_ms}}",
+                "members": [
+                  {
+                    "name": "{{random_first_name}} {{random_last_name}}",
+                    "role": "{{random_choice:engineer,senior_engineer,staff_engineer,tech_lead,manager}}",
+                    "allocation": "{{random_decimal:0.1:1.0}}",
+                    "skills": ["{{random_choice:java,go,python,rust,typescript}}", "{{random_choice:kafka,kubernetes,aws,terraform,docker}}"]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "{{random_choice:Platform,Infrastructure,Data,Frontend,Backend,Mobile,Security,DevOps}}",
+        "code": "DIV-{{random_number:10:99}}",
+        "headCount": "{{random_number:10:100}}",
+        "teams": [
+          {
+            "name": "{{random_choice:Core,Edge,API,Storage,Compute,Network,Auth,Observability}}",
+            "code": "TEAM-{{random_number:1:50}}",
+            "headCount": "{{random_number:5:30}}",
+            "lead": "{{random_first_name}} {{random_last_name}}",
+            "projects": [
+              {
+                "name": "Project-{{random_number:1:999}}",
+                "status": "{{random_choice:active,completed,planned,on_hold}}",
+                "priority": "{{random_choice:P0,P1,P2,P3}}",
+                "startDate": "{{timestamp_ms}}",
+                "members": [
+                  {
+                    "name": "{{random_first_name}} {{random_last_name}}",
+                    "role": "{{random_choice:engineer,senior_engineer,staff_engineer,tech_lead,manager}}",
+                    "allocation": "{{random_decimal:0.1:1.0}}",
+                    "skills": ["{{random_choice:java,go,python,rust,typescript}}", "{{random_choice:kafka,kubernetes,aws,terraform,docker}}"]
+                  },
+                  {
+                    "name": "{{random_first_name}} {{random_last_name}}",
+                    "role": "{{random_choice:engineer,senior_engineer,staff_engineer,tech_lead,manager}}",
+                    "allocation": "{{random_decimal:0.1:1.0}}",
+                    "skills": ["{{random_choice:java,go,python,rust,typescript}}", "{{random_choice:kafka,kubernetes,aws,terraform,docker}}"]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

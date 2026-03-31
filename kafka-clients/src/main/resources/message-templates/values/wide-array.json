@@ -1,0 +1,16 @@
+{
+  "batchId": "BATCH-{{counter}}",
+  "source": "sensor-gateway-{{random_number:1:50}}",
+  "windowStart": "{{timestamp_ms}}",
+  "windowEnd": "{{timestamp_ms}}",
+  "readingCount": "50",
+  "readings": "{{repeat_array:50}}",
+  "_arrayItemTemplate": {
+    "ts": "{{timestamp_ms}}",
+    "sensorId": "S-{{random_number:1:200}}",
+    "temp": "{{random_decimal:15.0:35.0}}",
+    "humidity": "{{random_decimal:20.0:80.0}}",
+    "pressure": "{{random_decimal:990.0:1020.0}}",
+    "voltage": "{{random_decimal:3.0:5.0}}"
+  }
+}

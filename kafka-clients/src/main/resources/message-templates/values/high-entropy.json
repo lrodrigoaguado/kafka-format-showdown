@@ -1,0 +1,9 @@
+{
+  "messageId": "{{random_uuid}}",
+  "timestamp": "{{timestamp_ms}}",
+  "encryptionAlgorithm": "AES-256-GCM",
+  "iv": "{{random_base64:16}}",
+  "encryptedPayload": "{{random_base64:4096}}",
+  "hmac": "{{random_base64:32}}",
+  "keyId": "KEY-{{random_number:1:100}}"
+}

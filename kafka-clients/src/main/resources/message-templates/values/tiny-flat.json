@@ -1,0 +1,5 @@
+{
+  "ts": "{{timestamp_ms}}",
+  "v": "{{random_decimal:0:999}}",
+  "s": "{{random_number:1:10}}"
+}

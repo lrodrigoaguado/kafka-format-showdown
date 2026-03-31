@@ -1,0 +1,10 @@
+{
+  "event-type": "bulk.data",
+  "source": "high-context-pipeline",
+  "trace-id": "{{random_uuid}}",
+  "timestamp": "{{timestamp_ms}}",
+  "content-type": "application/json",
+  "__generate_1": "{{repeat_headers:ctx:600}}",
+  "__generate_2": "{{repeat_headers:meta:600}}",
+  "__generate_3": "{{repeat_headers:ext:600}}"
+}

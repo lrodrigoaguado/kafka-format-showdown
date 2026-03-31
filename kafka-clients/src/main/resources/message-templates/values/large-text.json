@@ -1,0 +1,16 @@
+{
+  "ticketId": "TICKET-{{counter}}",
+  "createdAt": "{{timestamp_ms}}",
+  "priority": "{{random_choice:low,medium,high,critical}}",
+  "category": "{{random_choice:bug,feature_request,support,billing,security,performance}}",
+  "subject": "Issue with {{random_choice:login,payment,dashboard,api,performance,deployment,database,networking}} - Case {{random_number:10000:99999}}",
+  "description": "{{lorem_text:500}}",
+  "stepsToReproduce": "{{lorem_text:200}}",
+  "expectedBehavior": "{{lorem_text:100}}",
+  "actualBehavior": "{{lorem_text:100}}",
+  "internalNotes": "{{lorem_text:300}}",
+  "resolution": "{{lorem_text:150}}",
+  "customerName": "{{random_first_name}} {{random_last_name}}",
+  "assignee": "{{random_first_name}} {{random_last_name}}",
+  "status": "{{random_choice:open,in_progress,waiting,resolved,closed}}"
+}

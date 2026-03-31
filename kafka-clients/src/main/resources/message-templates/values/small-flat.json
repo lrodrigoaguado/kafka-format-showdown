@@ -1,0 +1,12 @@
+{
+  "eventId": "{{random_uuid}}",
+  "userId": "USER-{{random_number:10000:99999}}",
+  "action": "{{random_choice:click,scroll,hover,submit,navigate,search,add_to_cart,remove,share,download}}",
+  "page": "/{{random_choice:home,products,cart,checkout,profile,settings,dashboard,search,help,about}}",
+  "timestamp": "{{timestamp_ms}}",
+  "ip": "{{random_ip}}",
+  "browser": "{{random_choice:Chrome,Firefox,Safari,Edge,Opera}}",
+  "os": "{{random_choice:Windows,macOS,Linux,iOS,Android}}",
+  "sessionDuration": "{{random_number:1:3600}}",
+  "isNewUser": "{{random_boolean}}"
+}

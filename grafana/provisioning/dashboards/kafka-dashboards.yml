@@ -1,0 +1,11 @@
+# grafana/provisioning/dashboards/kafka-dashboards.yml
+apiVersion: 1
+providers:
+  - name: 'Kafka Dashboards'
+    orgId: 1
+    folder: 'Kafka'
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /var/lib/grafana/dashboards

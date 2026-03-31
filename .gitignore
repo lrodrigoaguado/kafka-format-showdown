@@ -1,0 +1,38 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Environment variables
+.env.local
+.env.*.local
+
+# Docker
+docker-compose.override.yml
+vol/
+volumes/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Build artifacts
+target/
+*.class
+*.jar
+
+# Temporary files
+*.tmp
+tmp/
+
+# Claude
+.r2-rules
+.claude
+CLAUDE.md
