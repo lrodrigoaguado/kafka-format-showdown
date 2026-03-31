@@ -34,17 +34,22 @@ public class Producer {
     private static final int DEFAULT_LINGER_MS = 100; // 100ms for better batching/compression in demo
     private static final int DEFAULT_BATCH_SIZE = 16384; // 16KB - Kafka default
     private static final int DEFAULT_BUFFER_MEMORY = 33554432; // 32MB
+    private static final int DEFAULT_COMPRESSION_LEVEL = -1; // -1 = use each codec's built-in default
 
     public static void main(String[] args) throws Exception {
-        // Parse arguments: <format> <compression> <template> [recordCount] [lingerMs] [batchSize]
+        // Parse arguments: <format> <compression> <template> [recordCount] [lingerMs] [batchSize] [compressionLevel]
         if (args.length < 3) {
-            System.err.println("Usage: Producer <FORMAT> <COMPRESSION> <HEADER_TEMPLATE+VALUE_TEMPLATE> [NUM_MESSAGES] [LINGER_MS] [BATCH_SIZE]");
+            System.err.println("Usage: Producer <FORMAT> <COMPRESSION> <HEADER_TEMPLATE+VALUE_TEMPLATE> [NUM_MESSAGES] [LINGER_MS] [BATCH_SIZE] [COMPRESSION_LEVEL]");
             System.err.println("  FORMAT: string, json, or avro");
             System.err.println("  COMPRESSION: none, gzip, snappy, lz4, or zstd");
             System.err.println("  TEMPLATE: header+value format (e.g., normal+medium-nested)");
             System.err.println("  NUM_MESSAGES: optional, default " + DEFAULT_RECORD_COUNT);
             System.err.println("  LINGER_MS: optional, default " + DEFAULT_LINGER_MS);
             System.err.println("  BATCH_SIZE: optional, default " + DEFAULT_BATCH_SIZE);
+            System.err.println("  COMPRESSION_LEVEL: optional, codec default if omitted");
+            System.err.println("    gzip: 1 (fastest) to 9 (smallest)");
+            System.err.println("    lz4:  1 (fastest) to 17 (smallest)");
+            System.err.println("    zstd: 1 (fastest) to 22 (smallest)");
             System.exit(1);
         }
 
@@ -54,8 +59,12 @@ public class Producer {
         int recordCount = args.length > 3 ? Integer.parseInt(args[3]) : DEFAULT_RECORD_COUNT;
         int lingerMs = args.length > 4 ? Integer.parseInt(args[4]) : DEFAULT_LINGER_MS;
         int batchSize = args.length > 5 ? Integer.parseInt(args[5]) : DEFAULT_BATCH_SIZE;
+        int compressionLevel = args.length > 6 ? Integer.parseInt(args[6]) : DEFAULT_COMPRESSION_LEVEL;
         String topicSafeTemplateName = templateName.replace("+", "-");
-        String topic = format + "-" + compression + "-" + topicSafeTemplateName;
+        // Include compression level in topic name when specified so different levels appear as separate series in Grafana
+        String compressionPart = compression +
+            (compressionLevel != DEFAULT_COMPRESSION_LEVEL ? "-l" + compressionLevel : "");
+        String topic = format + "-" + compressionPart + "-" + topicSafeTemplateName;
 
         // Load template (now required)
         MessageTemplate template = new MessageTemplate(templateName);
@@ -77,10 +86,15 @@ public class Producer {
         System.out.println("  Linger MS: " + lingerMs);
         System.out.println("  Batch Size: " + batchSize + " bytes");
 
-        // Set compression type
+        // Set compression type and optional level
         if (!compression.equals("none")) {
             props.setProperty(ProducerConfig.COMPRESSION_TYPE_CONFIG, compression);
-            System.out.println("  Compression: " + compression);
+            if (compressionLevel != DEFAULT_COMPRESSION_LEVEL) {
+                props.setProperty("compression.level", String.valueOf(compressionLevel));
+                System.out.println("  Compression: " + compression + " (level " + compressionLevel + ")");
+            } else {
+                System.out.println("  Compression: " + compression + " (default level)");
+            }
         } else {
             System.out.println("  Compression: none");
         }

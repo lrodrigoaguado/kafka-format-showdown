@@ -69,7 +69,7 @@ The producer and the consumer are Java clients that you can invoke using Maven. 
 
 ```bash
 mvn exec:java -Dexec.mainClass="io.confluent.csta.Producer" \
-  -Dexec.args="{FORMAT} {COMPRESSION} {HEADER_TEMPLATE}+{VALUE_TEMPLATE} [{NUM_MESSAGES}] [{LINGER_MS}] [{BATCH_SIZE}]"
+  -Dexec.args="{FORMAT} {COMPRESSION} {HEADER_TEMPLATE}+{VALUE_TEMPLATE} [{NUM_MESSAGES}] [{LINGER_MS}] [{BATCH_SIZE}] [{COMPRESSION_LEVEL}]"
 ```
 
 where the terms in curly braces represent the parameters.
@@ -92,6 +92,13 @@ where the terms in curly braces represent the parameters.
 - **{BATCH_SIZE}**: Maximum batch size in bytes (default: `16384` = 16KB)
   - Larger batches = better compression ratio
   - Production values: 16KB (default), 32KB, 64KB, 100KB
+- **{COMPRESSION_LEVEL}**: How hard the codec works to compress (omit to use each codec's built-in default)
+  - Higher levels = smaller output, more CPU; lower levels = faster, less compression
+  - `gzip`: 1 (fastest) – 9 (smallest), default 6
+  - `lz4`: 1 (fastest) – 17 (smallest), default 9
+  - `zstd`: 1 (fastest) – 22 (smallest), default 3
+  - Ignored for `none` and `snappy`
+  - When specified, the level is embedded in the topic name (e.g., `json-gzip-l1-normal-large-text`) so different levels appear as separate series in Grafana automatically
 
 For example, to produce 50000 messages in JSON format with normal headers and medium-nested values, compressed using Gzip:
 
@@ -138,6 +145,14 @@ done
 for value in tiny-flat small-flat medium-nested large-text; do
   mvn exec:java -Dexec.mainClass="io.confluent.csta.Producer" \
     -Dexec.args="json gzip normal+${value}"
+done
+```
+
+```bash
+# Test 5: Compression level — speed vs ratio trade-off (uses large-text for maximum visibility)
+for level in 1 6 9; do
+  mvn exec:java -Dexec.mainClass="io.confluent.csta.Producer" \
+    -Dexec.args="json gzip normal+large-text 50000 100 16384 $level"
 done
 ```
 
